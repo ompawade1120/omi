@@ -1,0 +1,686 @@
+prac 1 
+
+#include <iostream>
+using namespace std;
+class complex
+{
+  float real;
+  float imag;
+  public:
+  complex()
+  {
+    real=0;
+    imag=0;
+  }
+    complex operator +(complex);
+    complex operator *(complex);
+    
+    friend istream &operator >>(istream &input,complex &t)
+    {
+      cout<<"Enter the real part";
+      input>>t.real;
+      cout<<"Enter the imaginary part";
+      input>>t.imag;
+      return input;
+    }
+    friend ostream &operator <<(ostream &output,complex &t)
+    {
+     output<<t.real<<"+"<<t.imag<<"i\n";
+      return output;
+    }
+    
+};
+   complex complex::operator +(complex c)
+   {
+     complex temp;
+     temp.real=real+c.real;
+     temp.imag=imag+c.imag;
+     return temp;
+   }
+   
+   complex complex::operator *(complex c)
+   {
+     complex temp2;
+     temp2.real=(real*c.real)-(imag*c.imag);
+     temp2.imag=(imag*c.real)+(real*c.imag);
+     return temp2;
+   }
+  
+  int main()
+  {
+   complex c1,c2,c3,c4;
+   cout<<"Default constructor value=\n";
+   cout<<c1;
+   cout<<"\nEnter the 1st number\n";
+   cin>>c1;
+   cout<<"\nEnter the 2nd number\n";
+   cin>>c2;
+   c3=c1+c2;
+   c4=c1*c2;
+   cout<<"\nThe first number is ";
+   cout<<c1;
+   cout<<"\nThe second number is ";
+   cout<<c2;
+   cout<<"\nThe addition is ";
+   cout<<c3;
+   cout<<"\nThe multiplication is "; 
+   cout<<c4;
+   return 0;
+ }
+
+
+
+
+prac 2 
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+class person_additional_info
+{
+ char address[20],license[20],insurance[20];
+ long int contact;
+ public:
+ person_additional_info() //Default constructor
+ {
+  strcpy(address,"XYZ");
+  strcpy(license,"XY-0000000000");
+  strcpy(insurance,"XY00000000X");
+  contact=000000000;
+ }  
+  ~person_additional_info() //Destructor
+   {
+     cout<<"I am in Destructor";
+   }
+   friend class person; // Declaration Friend class
+};
+
+//Definition of friend class
+ class person
+  {
+   char name[20], dob[10], blood[10];
+   float ht,wt;
+   static int count; // Static variable
+   person_additional_info *pai;
+   public:
+   person() //Default constructor
+   { 
+     strcpy(name,"XYZ");
+     strcpy(dob,"dd/mm/yy");
+     strcpy(blood,"A +");
+     ht=0;
+     wt=0;
+     pai=new person_additional_info;
+   }
+  person(person*p1) //Copy constructor
+   { 
+     strcpy(name,p1->name);
+     strcpy(dob,p1->dob);
+     strcpy(blood,p1->blood);
+     ht=p1->ht;
+     wt=p1->wt;
+     pai=new person_additional_info;
+     strcpy(pai->address,p1->pai->address);
+     strcpy(pai->license,p1->pai->license);
+     strcpy(pai->insurance,p1->pai->insurance);
+     pai->contact=p1->pai->contact;
+   }
+  static void showcount() //Static member function
+   {
+     cout<<"\nNo of records count="<<count<<"\n";
+   }
+   ~person() //Destructor
+   {
+     cout<<"\nI am in Destructor\n";
+   }
+   void getdata(char name[20]);
+   inline void display(); // Inline function declaration
+ };
+   void person::getdata(char name[20])
+   {
+     strcpy(this->name,name); //this pointer
+     cout<<"\n Enter date of birth";
+     cin>>dob;
+     cout<<"\n Enter blood group";
+     cin>>blood;
+     cout<<"\n Enter height";
+     cin>>ht;
+     cout<<"\n Enter weight";
+     cin>>wt;
+     cout<<"\n Enter address";
+     cin>>pai->address;
+     cout<<"\n Enter Licence number";
+     cin>>pai->license;
+     cout<<"\n Enter Insurance policy number";
+     cin>>pai->insurance;
+     cout<<"\n Enter Contact number";
+     cin>>pai->contact;
+     count++;
+   }
+    //inline function definition
+     void person::display()
+    {
+        cout<<"\t"<<name;
+	cout<<"\t"<<dob;
+        cout<<"\t"<<blood;
+        cout<<"\t"<<ht;
+        cout<<"\t"<<wt;
+        cout<<"\t"<<pai->address;
+        cout<<"\t"<<pai->license;
+        cout<<"\t"<<pai->insurance;
+        cout<<"\t"<<pai->contact;
+    }
+  int person::count; //Static variable definition
+  int main()
+  {
+    person *p1,*p2;
+    int ch;
+    p1=new person; //call default constructor & dynamic memory allocation
+    p2=new person(p1); //call copy constructor
+    cout<<"\tName";
+    cout<<"\tDob";
+    cout<<"\t Blood";
+    cout<<"\tHt";
+    cout<<"\tWt";
+    cout<<"\tAddress";
+    cout<<"\tLicense";
+    cout<<"\tInsurance";
+    cout<<"\tContact";
+    cout<<endl;
+    cout<<"Default Constructor Value \n"; 
+    p1->display();
+    cout<<"\n";
+    cout<<"Copy Constructor Value \n";
+    p2->display();
+    int n;
+    cout<<"\nEnter how many records you want??";
+    cin>>n;
+    person p3[n]; //array of object
+    char name[20];
+    int x=0;
+    do
+    {
+      cout<<"\nWelcome to Personal database system";
+      cout<<"\n1.Enter the record";
+      cout<<"\n2.Display the record";
+      cout<<"\n3.Exit";
+      cin>>ch;
+      switch(ch)
+      {
+       case 1:
+       {
+         cout<<"\nEnter the Name ";
+         cin>>name;
+         p3[x].getdata(name);
+         person::showcount(); // calls static function
+         x++;
+         break;
+       }
+       case 2:
+       {
+        cout<<"\tName";
+        cout<<"\tDob";
+        cout<<"\tBlood";
+        cout<<"\tHt";
+        cout<<"\tWt";
+        cout<<"\tAddress";
+        cout<<"\tLicense";
+        cout<<"\tInsurance";
+        cout<<"\tContact";
+        for(int i=0;i<n;i++)
+        {
+          cout<<"\n";
+          p3[i].display(); //calls inline function
+        }
+        break;
+      }
+    }
+}while(ch!=3);
+   delete p1; //dynamic memory de-allocation
+   return 0;
+}
+
+
+
+
+
+
+prac 3
+
+
+#include<iostream>
+#include<cstring>
+#include<exception>
+ using namespace std;
+  class publication
+ {
+  protected:
+  string title;
+  float price;
+  public:
+  publication(string t = "No title", float p = 0.0)
+  {
+   title=t;
+   price=p;
+  }
+ };
+ class books:public publication
+ {
+   int pages;
+   public:
+   books(string t="No title",float p= 0.0, int pa = 0):publication(t,p)
+   {
+    pages=pa;
+   }
+ void getb()
+ {
+   cout<<"Enter the datails of the book :"<<endl;
+   cout<<"Enter the title of the book :"<<endl;
+   cin>>title;
+   //cin.ignore(1,'\n');
+   //getline(cin,title);
+   cout<<"Enter the price of the book :"<<endl;
+   cin>>price;
+   cout<<"Enter the pages of the book :"<<endl;
+   cin>>pages;
+   try
+  {
+    if(pages > 500 && pages <1500)
+    {
+     if(price >100 && price < 2000)
+     {
+       displayb();
+     }
+    }
+   else throw(pages);
+  }
+  catch(int i){
+   cout<<"Caught exception in function of book"<<endl;
+   cout<<"You entered an invalid data"<<endl;
+   title = "0";
+   price = 0.0;
+   pages = 0;
+   displayb();
+  throw;
+ }
+}
+void displayb()
+{
+  cout<<"The book you entered is :"<<endl<<endl;
+  cout<<"The entered title is :"<<title<<endl;
+  cout<<"The entered price is :"<<price<<endl;
+  cout<<"The entered pages are :"<<pages<<endl;
+}
+};
+   class tape:public publication
+   {
+    float min;
+    public:
+    tape(string t="No title",float p= 0.0, float m = 0.00):publication(t,p)
+    {
+     min=m;
+    }
+    void gett()
+    {
+      cout<<"Enter the details of the tape :"<<endl;
+      cout<<"Enter the title of the tape :"<<endl;
+      cin>>title;
+      //cin.ignore(1,'\n');
+      //getline(cin,title);
+      cout<<"Enter the price of the tape :"<<endl; 
+      cin>>price;
+      cout<<"Enter the playing time(in minutes) :"<<endl;
+      cin>>min;
+      try
+       {
+         if(min > 30.00 && min < 90.00)
+        {
+          if(price > 500 && price < 1000)
+         {
+           displayt();
+         }
+        }
+      else throw(min);
+      }
+      catch(float f){
+       cout<<"caught exception in the function of tape"<<endl;
+       cout<<"you entered an invalid data"<<endl;
+       title = "0";
+       price = 0.0;
+       min = 0.0;
+       displayt();
+      throw;
+      }
+    }  
+    void displayt()
+     { 
+       cout<<"The details of tape you entered is :"<<endl<<endl;
+       cout<<"The entered title is :"<<title<<endl;
+       cout<<"The entered price is :"<<price<<endl;
+       cout<<"The entered play time is :"<<min<<endl;
+     }
+  };
+   int main() 
+   {
+    books b;
+    tape t;
+    int choice;
+    cout<<"Do want to buy a book(Press 1) or a tape(Press 2) :"<<flush;
+    cin>>choice;
+    switch(choice)
+    {
+       case 1: try
+        {
+         b.getb();
+        } 
+        catch(int i)
+        {
+        cout<<"Caught exception in int main()"<<endl;
+        }
+         break;
+      case 2: try
+        {
+          t.gett();
+        }
+        catch(float f)
+        {
+         cout<<"Caught exception in int main()"<<endl;
+        }
+        break;
+        default:cout<<"Entered bad choice!! Try again!!"<<endl;
+    }
+    return 0;
+   }
+
+
+
+
+prac 4
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+class employee //name of employee class
+  { 
+   char name[20]; //variable declaration
+   int emp_id;
+   float salary;
+   public:
+   void accept()
+   {
+    cin>>name;
+    cin>>emp_id;
+    cin>>salary;
+   }
+   void display()
+   {
+     cout<<"\n"<<name<<"\t"<<emp_id<<"\t"<<salary;
+   }
+  };
+int main()
+{
+  employee o[5];
+  fstream f;
+  int i,n;
+  f.open("input.txt",ios::out); //create employee
+  cout<<"\n How many employee information wanted to store:";
+  cin>>n;
+  cout<<"\n Enter information of employees (Enter name, emp_id, salary)";
+  for(i=1;i<=n;i++)
+  {
+    cout<<"\n Enter information of  employee "<<i<<" ";
+    o[i].accept(); //accept input from user
+    f.write((char*)&o[i],sizeof(o[i])); //write object in employee
+  }
+  f.close();
+  f.open("input.txt", ios::in);
+  cout<<"\n Information of employee is as follows";
+  for(i=1;i<=n;i++)
+  {
+    f.read((char*)&o[i],sizeof(o[i])); //read data from employee
+    o[i].display();
+  }
+   f.close();
+   return 0;
+ }
+
+
+
+
+
+prac 5
+
+#include<iostream>
+using namespace std;
+#define size 10
+int n;
+template<class T>
+void selection(T A[size])
+{
+  int i,j,min;
+  T temp;
+  for(i=0;i<=n-1;i++)
+  {
+    min=i;
+     for(j=i+1;j<=n;j++)
+    {
+     if(A[j]<A[min])
+     min=j;
+    }
+     temp=A[i];
+     A[i]=A[min];
+     A[min]=temp;
+  }
+  cout<<"\nSorted list=\n";
+  for(i=0;i<n;i++)
+  cout<<"\t"<<A[i];
+}
+int main()
+{
+int i,A[size];
+float B[size];
+cout<<"Selection sort\n";
+cout<<"\nInteger Element\n";
+cout<<"Enter how many elements you want\n";
+cin>>n;
+cout<<"\nEnter the Integer element\n";
+for(i=0;i<n;i++)
+cin>>A[i];
+selection(A);
+cout<<"\nFloat Element\n";
+cout<<"Enter how many elements you want\n";
+cin>>n;
+cout<<"\nEnter float element\n";
+for(i=0;i<n;i++)
+cin>>B[i];
+selection(B);
+return 0;
+}
+
+
+
+
+prac 6
+
+#include <iostream> //standard input output stream header file
+#include <algorithm> //The STL algorithms are generic because
+#include <vector> //The header file for the STL vector library is
+//vector.
+using namespace std;
+class Item // creating class Item
+{
+ public:
+ char name[10];
+ int quantity;
+ int cost;
+ int code;
+ bool operator==(const Item& i1) //Boolean operators allow
+//you to create more complex conditional statements
+ {
+ if(code==i1.code) //operator will return 1 if the
+//comparison is true, or 0 if the comparison is false
+ return 1;
+ return 0;
+ }
+ bool operator<(const Item& i1)
+ {
+ if(code<i1.code) //operator will return 1 if the
+//comparison is true, or 0 if the comparison is false
+ return 1;
+ return 0;
+ }
+};
+vector<Item> o1;
+void print(Item &i1);
+void display();
+void insert();
+void search();
+void dlt();
+bool compare(const Item &i1, const Item &i2)
+{
+ //if (i1.name != i2.name) return i1.cost < i2.cost;
+ return i1.cost < i2.cost;
+}
+int main()
+{
+ int ch;
+ do
+ {
+ cout<<"\n* * * * * Menu * * * * *";
+ cout<<"\n1.Insert";
+ cout<<"\n2.Display";
+ cout<<"\n3.Search";
+ cout<<"\n4.Sort";
+ cout<<"\n5.Delete";
+ cout<<"\n6.Exit";
+ cout<<"\nEnter your choice : ";
+ cin>>ch;
+
+ switch(ch)
+ {
+ case 1:
+ insert();
+ break;
+
+ case 2:
+ display();
+ break;
+
+ case 3:
+ search();
+//display();
+ break;
+
+ case 4:
+ sort(o1.begin(),o1.end(),compare);
+ cout<<"\n\n Sorted on Cost : ";
+ display();
+ break;
+
+ case 5:
+ dlt();
+ break;
+
+ case 6:
+ exit(0);
+ }
+
+ }while(ch!=7);
+ return 0;
+}
+void insert()
+{
+ Item i1;
+ cout<<"\nEnter Item Name : ";
+ cin>>i1.name;
+ cout<<"\nEnter Item Quantity : ";
+ cin>>i1.quantity;
+ cout<<"\nEnter Item Cost : ";
+ cin>>i1.cost;
+ cout<<"\nEnter Item Code : ";
+ cin>>i1.code;
+ o1.push_back(i1);
+}
+void display()
+{
+ for_each(o1.begin(),o1.end(),print);
+}
+void print(Item &i1)
+{
+ cout<<"\n";
+ cout<<"\nItem Name : "<<i1.name;
+ cout<<"\nItem Quantity : "<<i1.quantity;
+ cout<<"\nItem Cost : "<<i1.cost;
+ cout<<"\nItem Code : "<<i1.code;
+ cout<<"\n\n";
+}
+void search()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to search : ";
+ cin>>i1.code;
+ p=find(o1.begin(),o1.end(),i1);
+ if(p==o1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ cout<<"\nFound!!!";
+ 
+ }
+}
+void dlt()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to delete : ";
+ cin>>i1.code;
+ p=find(o1.begin(),o1.end(),i1);
+ if(p==o1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ o1.erase(p);
+ cout<<"\nDeleted!!!";
+ }
+}
+
+
+
+
+prac 7
+
+#include <iostream>
+#include <map>
+#include <string>
+#include <utility>
+using namespace std;
+int main()
+{
+typedef map<string,int> mapType;
+mapType populationMap;//create empty map
+//insert elements in map in random order
+populationMap.insert(pair<string, int>("China", 1339));
+populationMap.insert(pair<string, int>("India", 1187));
+populationMap.insert(mapType::value_type("US", 310));
+populationMap.insert(mapType::value_type("Indonesia", 234));
+populationMap.insert(make_pair("Brasil", 193));
+populationMap.insert(make_pair("Pakistan", 170));
+//iterator or index for map
+mapType::iterator iter;
+cout << "Size of populationMap: " << populationMap.size() << '\n';
+string country_name;
+cout<<"Enter name of the country\n";
+cin>>country_name;
+iter = populationMap.find(country_name);
+if( iter != populationMap.end() )
+cout << country_name <<"'s populations is "
+<< iter->second << " million\n";
+else
+cout << "Key is not in populationMap" << '\n';
+populationMap.clear();
+}
