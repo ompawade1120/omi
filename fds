@@ -1,0 +1,2202 @@
+Practical No: 1
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Perform different operations on matrix.
+ 
+Code:
+def create(r, c):
+   out = []
+   for i in range(r):
+       row = []
+       for j in range(c):
+           k = int(input(f"Enter the element of matrix [{i}] [{j}]: "))
+           row.append(k)
+       out.append(row)
+   return out
+ 
+def add(A, B, r, c):
+   result = [[0 for i in range(c)] for j in range(r)]
+   for i in range(r):
+       for j in range(c):
+           result[i][j] = A[i][j] + B[i][j]
+   return result
+ 
+def sub(A, B, r, c):
+   result = [[0 for i in range(c)] for j in range(r)]
+   for i in range(r):
+       for j in range(c):
+           result[i][j] = A[i][j] - B[i][j]
+   return result
+ 
+def trans(A, r, c):
+   result = [[0 for i in range(r)] for j in range(c)]
+   for i in range(r):
+       for j in range(c):
+           result[j][i] = A[i][j]
+   return result
+ 
+def mult(A, B, r, c):
+   result = [[0 for i in range(c)] for j in range(r)]
+   for i in range(r):
+       for j in range(c):
+           for k in range(len(B)):
+               result[i][j] += A[i][k] * B[k][j]
+   return result
+ 
+def display(matrix):
+   for row in matrix:
+       print(row)
+ 
+print("Welcome to Matrix Operations")
+while True:
+   print("\nMain Menu")
+   print("1. Addition")
+   print("2. Subtraction")
+   print("3. Transpose")
+   print("4. Multiplication")
+   print("5. Exit")
+ 
+   choice = int(input("Enter your choice: "))
+ 
+   if choice in [1, 2, 3, 4]:
+       r = int(input("Enter number of rows: "))
+       c = int(input("Enter number of columns: "))
+ 
+       print("For Matrix A:")
+       A = create(r, c)
+       display(A)
+ 
+       if choice != 3:  # Transpose only needs one matrix
+           print("For Matrix B:")
+           B = create(r, c)
+           display(B)
+ 
+       if choice == 1:
+           print("Result of Addition:")
+           result = add(A, B, r, c)
+           display(result)
+ 
+       elif choice == 2:
+           print("Result of Subtraction:")
+           result = sub(A, B, r, c)
+           display(result)
+ 
+       elif choice == 3:
+           print("Transpose of Matrix A:")
+           result = trans(A, r, c)
+           display(result)
+ 
+       elif choice == 4:
+           print("Result of Multiplication:")
+           result = mult(A, B, r, c)
+           display(result)
+ 
+   elif choice == 5:
+       print("Exiting program.")
+       break
+ 
+   else:
+       print("Invalid choice, please try again.")
+
+ 
+ 
+Output:
+Welcome to Matrix Operations
+ 
+Main Menu
+1. Addition
+2. Subtraction
+3. Transpose
+4. Multiplication
+5. Exit
+Enter your choice: 1
+Enter number of rows: 2
+Enter number of columns: 2
+For Matrix A:
+Enter the element of matrix [0] [0]: 1
+Enter the element of matrix [0] [1]: 2
+Enter the element of matrix [1] [0]: 3
+Enter the element of matrix [1] [1]: 4
+ 
+[1, 2]
+[3, 4]
+For Matrix B:
+Enter the element of matrix [0] [0]: 5
+Enter the element of matrix [0] [1]: 6
+Enter the element of matrix [1] [0]: 7
+Enter the element of matrix [1] [1]: 8
+[5, 6]
+[7, 8]
+Result of Addition:
+[6, 8]
+[10, 12]
+ 
+Main Menu
+1. Addition
+2. Subtraction
+3. Transpose
+4. Multiplication
+5. Exit
+Enter your choice: 2
+Enter number of rows: 2
+Enter number of columns: 2
+For Matrix A:
+Enter the element of matrix [0] [0]: 6
+Enter the element of matrix [0] [1]: 7
+Enter the element of matrix [1] [0]: 8
+Enter the element of matrix [1] [1]: 9
+[6, 7]
+[8, 9]
+For Matrix B:
+Enter the element of matrix [0] [0]: 1
+Enter the element of matrix [0] [1]: 2
+Enter the element of matrix [1] [0]: 3
+Enter the element of matrix [1] [1]: 4
+[1, 2]
+[3, 4]
+Result of Subtraction:
+[5, 5]
+[5, 5]
+Main Menu
+1. Addition
+2. Subtraction
+3. Transpose
+4. Multiplication
+5. Exit
+Enter your choice: 3
+Enter number of rows: 2
+Enter number of columns: 2
+For Matrix A:
+Enter the element of matrix [0] [0]: 1
+Enter the element of matrix [0] [1]: 3
+Enter the element of matrix [1] [0]: 5
+Enter the element of matrix [1] [1]: 6
+[1, 3]
+[5, 6]
+Transpose of Matrix A:
+[1, 5]
+[3, 6]
+ 
+Main Menu
+1. Addition
+2. Subtraction
+3. Transpose
+4. Multiplication
+5. Exit
+Enter your choice: 4
+Enter number of rows: 2
+Enter number of columns: 2
+For Matrix A:
+Enter the element of matrix [0] [0]: 1
+Enter the element of matrix [0] [1]: 2
+Enter the element of matrix [1] [0]: 3
+Enter the element of matrix [1] [1]: 4
+[1, 2]
+[3, 4]
+For Matrix B:
+Enter the element of matrix [0] [0]: 5
+Enter the element of matrix [0] [1]: 4
+Enter the element of matrix [1] [0]: 3
+Enter the element of matrix [1] [1]: 2
+[5, 4]
+[3, 2]
+Result of Multiplication:
+[11, 8]
+[27, 20]
+ 
+Main Menu
+1. Addition
+2. Subtraction
+3. Transpose
+4. Multiplication
+5. Exit
+Enter your choice: 5
+Exiting program.
+
+
+
+
+
+
+Practical No: 2
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: write a python program to store marks for N students.
+ 
+Code:
+def avg_score(n):
+   sum = 0
+   #count = 0
+   for i in range(len(marklist)):
+       if marklist[i] != 'a':
+           sum = sum + int(marklist[i])
+      # count += 1
+   print("Total marks :", sum)
+   print("Avarage score of class is : ", sum / n)
+   print("-----------------------------------------------")
+ 
+ 
+def high_low_score():
+   for i in range(len(marklist)):
+       if marklist[i]!='a':
+           highest_mark = marklist[i]
+           print(highest_mark)
+           break
+       else:
+           highest_mark = marklist[0]
+   for i in range(1,len(marklist)):
+       if marklist[i] != 'a':
+           if marklist[i]>highest_mark:
+               highest_mark = marklist[i]
+   print("Highest score of class is : ", highest_mark)
+ 
+   lowest_score = marklist[0]
+   for number in marklist:
+       if number != 'a':
+           if number < lowest_score:
+               lowest_score = number
+   print("Lowest Score of class is : ", lowest_score)
+   print("-----------------------------------------------")
+ 
+ 
+def count_absent():
+   count = 0
+   for i in range(len(marklist)):
+       if marklist[i] == 'a':
+           count += 1
+   print("Total count of absent student is : ",count)
+   print("-----------------------------------------------")
+ 
+ 
+def mark_with_highest_frequency():
+   count = 0
+   mark = marklist[0]
+   for i in marklist:
+       if i != 'a':
+           freq = marklist.count(i)
+           if freq > count:
+               count = freq
+               mark = i
+ 
+   # printing result
+   print("marks with highest frequency is : " + str(mark) +"and it occures :", str(count) + "times")
+   print("-----------------------------------------------")
+ 
+ 
+marklist = []
+print("enter the no of student in class")
+n = int(input())
+ 
+print("enter the marks of student. Press 'a' for absent ")
+for i in range(n):
+   mark = (input(f"Student[{i}]"))
+   marklist.append(mark)
+print("-----------------------------------------------")
+print("Marklist of FDS Subject of class SE is :", marklist)
+ 
+print("-----------------------------------------------")
+ 
+while (True):
+   print("1.The average score of class ")
+   print("2. Highest score and lowest score of class")
+   print("3.Count of students who were absent for the test")
+   print("4.Display mark with highest frequency")
+   print("5. Exit")
+ 
+   ch = int(input("Enter your choice"))
+   print("-----------------------------------------------")
+ 
+   if ch == 1:
+       avg_score(n)
+   elif ch == 2:
+       high_low_score()
+   elif ch == 3:
+       count_absent()
+   elif ch == 4:
+       mark_with_highest_frequency()
+   elif ch == 5:
+       break
+   else:
+       print("Enter valid choice from above menu")
+OUTPUT:
+ 
+>>> %Run pr2.py
+enter the no of student in class
+5
+enter the marks of student. Press 'a' for absent
+Student[0]90
+Student[1]88
+Student[2]23
+Student[3]a
+Student[4]45
+-----------------------------------------------
+Marklist of FDS Subject of class SE is : ['90', '88', '23', 'a', '45']
+-----------------------------------------------
+1.The average score of class
+2. Highest score and lowest score of class
+3.Count of students who were absent for the test
+4.Display mark with highest frequency
+5. Exit
+Enter your choice1
+-----------------------------------------------
+Total marks : 246
+Avarage score of class is :  49.2
+-----------------------------------------------
+1.The average score of class
+2. Highest score and lowest score of class
+3.Count of students who were absent for the test
+4.Display mark with highest frequency
+5. Exit
+Enter your choice2
+-----------------------------------------------
+90
+Highest score of class is :  90
+Lowest Score of class is :  23
+-----------------------------------------------
+1.The average score of class
+2. Highest score and lowest score of class
+3.Count of students who were absent for the test
+4.Display mark with highest frequency
+5. Exit
+Enter your choice3
+-----------------------------------------------
+Total count of absent student is :  1
+-----------------------------------------------
+1.The average score of class
+2. Highest score and lowest score of class
+3.Count of students who were absent for the test
+4.Display mark with highest frequency
+5. Exit
+Enter your choice4
+-----------------------------------------------
+marks with highest frequency is : 90and it occures : 1times
+-----------------------------------------------
+1.The average score of class
+2. Highest score and lowest score of class
+3.Count of students who were absent for the test
+4.Display mark with highest frequency
+5. Exit
+Enter your choice5
+-----------------------------------------------
+>>>
+
+
+
+
+
+
+
+
+Practical No: 3
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Write a python program to perform String operations
+ 
+Write a Python program to compute following operations on String:
+1. To display word with the longest length
+2. To determines the frequency of occurrence of particular character in the string
+3. To check whether given string is palindrome or not
+4. To display index of first appearance of the substring
+5. To count the occurrences of each word in a given string
+ 
+Code:
+str = (input("Enter the string : "))
+def longest_word(str):
+   list_1 = (str.split())
+   print(list_1)
+   longest_length_keyword = ''
+   for i in list_1:
+       if len(i) > len(longest_length_keyword):
+           longest_length_keyword = i
+           print("The Longest Length Keyword is : ", longest_length_keyword)
+ 
+def char_frequency(str):
+   char = input("Enter the character: ")
+   list_2 = list(str)
+   print(list_2)
+   count = 0
+   for i in range(len(list_2)):
+       if list_2[i] == char:
+           count += 1
+   print(count)
+ 
+def palindrome_check(str):
+   list_3 = list(str)
+   print(list_3)
+   revers = ''
+   for i in range(len(str), 0, -1):
+       revers = revers + str[i - 1]
+   print(revers)
+   if str == revers:
+       print("It is a Plindrom")
+   else:
+       print("It is not a Palindrome")
+ 
+def word_frequency(str):
+   word_counts = {}
+   for word in str.split():
+       if word in word_counts:
+           word_counts[word] += 1
+       else:
+           word_counts[word] = 1
+   for word, count in word_counts.items():
+       print(f"{word}: {count}")
+ 
+def substring_index(str):
+   subst = input("enter the substring: ")
+   subs = 0
+   list_1 = (str.split())
+   for i in range(len(list_1)):
+       if list_1[i] == subst:
+           print(subst, "is present in the string at index", i)
+           subs += 1
+   if subs == 0:
+       print(subst, "is not present in the string")
+ 
+while True:
+   print("String Operations Menu:")
+   print("1. Find the longest word")
+   print("2. Count the frequency of a character")
+   print("3. Check if the string is a palindrome")
+   print("4. Count the frequency of each word")
+   print("5. Find the index of a substring")
+   print("6. Exit")
+ 
+   choice = input("Enter your choice : ")
+   if choice == '1':
+       longest_word(str)
+   elif choice == '2':
+       char_frequency(str)
+   elif choice == '3':
+       palindrome_check(str)
+   elif choice == '4':
+       word_frequency(str)
+   elif choice == '5':
+       substring_index(str)
+   else:
+       exit()
+ 
+OUTPUT:
+>>> %Run pr3.py
+Enter the string : Hello my name is komal
+String Operations Menu:
+1. Find the longest word
+2. Count the frequency of a character
+3. Check if the string is a palindrome
+4. Count the frequency of each word
+5. Find the index of a substring
+6. Exit
+Enter your choice : 1
+['Hello', 'my', 'name', 'is', 'komal']
+The Longest Length Keyword is :  Hello
+String Operations Menu:
+1. Find the longest word
+2. Count the frequency of a character
+3. Check if the string is a palindrome
+4. Count the frequency of each word
+5. Find the index of a substring
+6. Exit
+Enter your choice : 2
+Enter the character: a
+['H', 'e', 'l', 'l', 'o', ' ', 'm', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'k', 'o', 'm', 'a', 'l']
+2
+String Operations Menu:
+1. Find the longest word
+2. Count the frequency of a character
+3. Check if the string is a palindrome
+4. Count the frequency of each word
+5. Find the index of a substring
+6. Exit
+Enter your choice : 3
+['H', 'e', 'l', 'l', 'o', ' ', 'm', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'k', 'o', 'm', 'a', 'l']
+lamok si eman ym olleH
+It is not a Palindrome
+String Operations Menu:
+1. Find the longest word
+2. Count the frequency of a character
+3. Check if the string is a palindrome
+4. Count the frequency of each word
+5. Find the index of a substring
+6. Exit
+Enter your choice : 4
+Hello: 1
+my: 1
+name: 1
+is: 1
+komal: 1
+String Operations Menu:
+1. Find the longest word
+2. Count the frequency of a character
+3. Check if the string is a palindrome
+4. Count the frequency of each word
+5. Find the index of a substring
+6. Exit
+Enter your choice : 5
+enter the substring: o
+o is not present in the string
+String Operations Menu:
+1. Find the longest word
+2. Count the frequency of a character
+3. Check if the string is a palindrome
+4. Count the frequency of each word
+5. Find the index of a substring
+6. Exit
+Enter your choice : 6
+ 
+Process ended with exit code 0.
+
+
+
+
+
+
+
+Practical No: 4
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Implementation of Searching Technique Using Python
+ 
+1. Write a Python program to store roll numbers of students in an array who attended a training program in random order. Write a function for searching whether a particular student attended a training program or not, using Linear search and Sentinel search.
+Code:
+def linear_search(roll_no, key, n):
+   for i in range(len(roll_no)):
+       if roll_no[i] == key:
+           return i
+   return -1
+ 
+def sentinel_search(roll_no, key, n):
+   last = roll_no[n - 1]
+   roll_no[n - 1] = key
+   i = 0
+   while roll_no[i] != key:
+       i += 1
+   roll_no[n - 1] = last
+   if (i < n - 1) or (roll_no[i] == key):
+       print("Roll no is present")
+   else:
+       print("Roll no is not present")
+ 
+roll_no = [1, 10, 13, 2, 5, 8, 32, 22, 64, 25]
+key = int(input("Enter the roll no to find whether it's present or not: "))
+print("________________________________________________________")
+n = len(roll_no)
+ 
+while True:
+   print("1. Linear search\n2. Sentinel Search\n3. Exit")
+   print("________________________________________________________")
+   ch = int(input("Enter your choice: "))
+   print("________________________________________________________")
+ 
+   if ch == 1:
+       result = linear_search(roll_no, key, n)
+       if result == -1:
+           print("Roll no is not present")
+       else:
+           print("Roll no is present")
+   elif ch == 2:
+       sentinel_search(roll_no, key, n)
+   elif ch == 3:
+       break
+   else:
+       print("Enter a valid input")
+ 
+OUTPUT:
+>>> %Run pr4.py
+Enter the roll no to find whether it's present or not: 2
+________________________________________________________
+1. Linear search
+2. Sentinel Search
+3. Exit
+________________________________________________________
+Enter your choice: 1
+________________________________________________________
+Roll no is present
+1. Linear search
+2. Sentinel Search
+3. Exit
+________________________________________________________
+Enter your choice: 2
+________________________________________________________
+Roll no is present
+1. Linear search
+2. Sentinel Search
+3. Exit
+________________________________________________________
+Enter your choice: 3
+________________________________________________________
+>>>
+ 
+​
+2. Write a Python program to store roll numbers of student array who attended training program in sorted order. Write a function for searching whether a particular student attended a training program or not, using Binary search and Fibonacci search.
+Code:
+def binarysearch(roll, x):
+   low = 0
+   high = len(roll) - 1
+   while high >= low:
+       mid = (low + high) // 2
+       if roll[mid] == x:
+           return mid
+       elif roll[mid] > x:
+           high = mid - 1
+       elif roll[mid] < x:
+           low = mid + 1
+   return -1
+ 
+def fibonacci_search(arr, n, key):
+   offset = -1
+   Fm2 = 0
+   Fm1 = 1
+   Fm = Fm2 + Fm1
+   while Fm < n:
+       Fm2 = Fm1
+       Fm1 = Fm
+       Fm = Fm2 + Fm1
+   while Fm > 1:
+       i = min(offset + Fm2, n - 1)
+       if arr[i] < key:
+           Fm = Fm1
+           Fm1 = Fm2
+           Fm2 = Fm - Fm1
+           offset = i
+       elif arr[i] > key:
+           Fm = Fm2
+           Fm1 = Fm1 - Fm2
+           Fm2 = Fm - Fm1
+       else:
+           return i
+   if Fm1 == 1 and arr[n - 1] == key:
+       return n - 1
+   return -1
+ 
+roll_no = [2, 3, 4, 5, 6, 7, 8, 9]
+n = len(roll_no)
+key = int(input("Enter the roll no to check whether he or she attended the training program: "))
+ 
+while True:
+   print("1. Binary Search\n2. Fibonacci Search\n3. Exit")
+   ch = int(input("Enter the choice: "))
+ 
+   if ch == 1:
+       result = binarysearch(roll_no, key)
+       if result == -1:
+           print("Roll no:", key, "did not attend the training program.")
+       else:
+           print("Roll no:", key, "attended the training program.")
+   
+   elif ch == 2:
+       result = fibonacci_search(roll_no, n, key)
+       if result >= 0:
+           print("Roll no:", key, "attended the training program.")
+       else:
+           print("Roll no:", key, "did not attend the training program.")
+   
+   elif ch == 3:
+       break
+   
+   else:
+       print("Enter a valid choice.")
+ 
+Output:
+>>> %Run pr4.py
+Enter the roll no to check whether he or she attended the training program: 6
+1. Binary Search
+2. Fibonacci Search
+3. Exit
+Enter the choice: 1
+Roll no: 6 attended the training program.
+1. Binary Search
+2. Fibonacci Search
+3. Exit
+Enter the choice: 2
+Roll no: 6 attended the training program.
+1. Binary Search
+2. Fibonacci Search
+3. Exit
+Enter the choice: 3
+>>>
+
+
+
+
+
+
+
+Practical No: 5
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Perform different sorting alorithms
+ 
+Code:
+arr = []
+def data(arr):
+   student = int(input("Enter the total number of students: "))
+   for i in range(student):
+       print("Enter the Percentage", i + 1, ":")
+       n = float(input())
+       arr.append(n)
+ 
+data(arr)
+print("The Percentage of all the Students is:", arr)
+ 
+def bubble_sort(arr):
+   for i in range(len(arr)):
+       for j in range(0, len(arr) - i - 1):
+           if arr[j] > arr[j + 1]:
+               temp = arr[j + 1]
+               arr[j + 1] = arr[j]
+               arr[j] = temp
+   print(arr)
+ 
+def selection_sort(arr):
+   for i in range(len(arr)):
+       min_index = i
+       for j in range(i + 1, len(arr)):
+           if arr[j] < arr[min_index]:
+               min_index = j
+       arr[i], arr[min_index] = arr[min_index], arr[i]
+   print(arr)
+ 
+def top(arr):
+   top_arr = []
+   count = 0
+   i = len(arr) - 1
+   while count < 5 and i >= 0:
+       top_arr.append(arr[i])
+       i = i - 1
+       count = count + 1
+   return top_arr
+ 
+while True:
+   print("\n1. Bubble Sort")
+   print("2. Selection Sort")
+   print("3. Top five scores")
+   choice = int(input("Enter your Choice: "))
+ 
+   if choice == 1:
+       print("The Percentage of the student according to Bubble Sort will be: ")
+       bubble_sort(arr)
+ 
+   elif choice == 2:
+       print("The Percentage of the student according to Selection Sort will be: ")
+       selection_sort(arr)
+ 
+   elif choice == 3:
+       print("The Top Percentages of the students are: ")
+       print(top(arr))
+ 
+   else:
+       exit()
+ 
+OUTPUT:
+>>> %Run pr5.py
+Enter the total number of students: 6
+Enter the Percentage 1 :
+45
+Enter the Percentage 2 :
+78
+Enter the Percentage 3 :
+12
+Enter the Percentage 4 :
+90
+Enter the Percentage 5 :
+88
+Enter the Percentage 6 :
+35
+The Percentage of all the Students is: [45.0, 78.0, 12.0, 90.0, 88.0, 35.0]
+ 
+1. Bubble Sort
+2. Selection Sort
+3. Top five scores
+Enter your Choice: 1
+The Percentage of the student according to Bubble Sort will be:
+[12.0, 35.0, 45.0, 78.0, 88.0, 90.0]
+ 
+1. Bubble Sort
+2. Selection Sort
+3. Top five scores
+Enter your Choice: 2
+The Percentage of the student according to Selection Sort will be:
+[12.0, 35.0, 45.0, 78.0, 88.0, 90.0]
+ 
+1. Bubble Sort
+2. Selection Sort
+3. Top five scores
+Enter your Choice: 3
+The Top Percentages of the students are:
+[90.0, 88.0, 78.0, 45.0, 35.0]
+ 
+1. Bubble Sort
+2. Selection Sort
+3. Top five scores
+Enter your Choice: 4
+ 
+Process ended with exit code 0.
+
+
+
+
+
+
+ Practical No: 6
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Perform the Quicksort on given array and display top five scores.
+ 
+Code:
+def quicksort(alist, start, end):
+   if end - start > 1:
+       p = partition(alist, start, end)
+       quicksort(alist, start, p)
+      quicksort(alist, p + 1, end)
+def partition(alist, start, end):
+   pivot = alist[start]
+   i = start + 1
+   j = end - 1
+ 
+   while True:
+       while i <= j and alist[i] <= pivot:
+           i = i + 1
+       while i <= j and alist[j] >= pivot:
+           j = j - 1
+ 
+       if i <= j:
+           temp = alist[j]
+           alist[j] = alist[i]
+           alist[i] = temp
+ 
+       else:
+           temp = alist[j]
+           alist[j] = alist[start]
+           alist[start] = temp
+ 
+           return j
+ 
+def display_top_five(array):
+   print("Top Five Percentages are : ")
+   if len(array) < 5:
+       start, end = len(array) - 1, -1
+   else:
+       start, end = len(array) - 1, len(array) - 6
+ 
+   for i in range(start, end, -1):
+       print(array[i],sep = "\n")
+ 
+print("enter the number of student in class")
+n = int(input())
+array = []
+i = 0
+for i in range(n):
+   print(f"Enter the percentage of student[{i}]")
+   percentage = float(input())
+   array.append(percentage)
+print("You have entered following percentage:")
+for i in array:
+   print(i, end=" ")
+ 
+quicksort(array, 0, n)
+print('\n Sorted list: ', end='')
+print(array)
+display_top_five(array)
+ 
+OUTPUT:
+ 
+>>> %Run pr6.py
+enter the number of student in class
+6
+Enter the percentage of student[0]
+67
+Enter the percentage of student[1]
+90
+Enter the percentage of student[2]
+78
+Enter the percentage of student[3]
+23
+Enter the percentage of student[4]
+77
+Enter the percentage of student[5]
+96
+You have entered following percentage:
+67.0 90.0 78.0 23.0 77.0 96.0
+Sorted list: [23.0, 67.0, 77.0, 78.0, 90.0, 96.0]
+Top Five Percentages are :
+96.0
+90.0
+78.0
+77.0
+67.0
+
+
+
+
+
+
+
+
+ Practical No: 7
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: write a c++ program to maintain club members information using singly linked list.
+ 
+CODE:
+#include<iostream>
+using namespace std;
+struct node
+{
+   int prn;
+   string name;
+   struct node *next;
+};
+class linklist
+{
+   node *president,*secretory;
+   public:
+   linklist()
+   {
+       president = NULL;
+       secretory =NULL;
+   }
+   void addMembers();
+   void countMember();
+   void deleteMember();
+   void display();
+   void displayReverse();
+   void concatList();
+   void deletePresident();
+};
+void linklist::addMembers()
+{
+   node *newmember = new node();
+   cout<<"Enter the PRN of student";
+   cin>>newmember->prn;
+   cout<<"Enter name of Student:";
+   cin>>newmember->name;
+   if(president == NULL)
+   {
+       president = newmember;
+       secretory = newmember;
+   }
+   else{
+       secretory->next=newmember;
+       secretory=newmember;
+   }
+}
+void linklist::countMember()
+{
+   node*temp = president;
+   int count =0;
+   if(president == NULL)
+   {
+       cout<<"List is empty & count is :"<<count;
+   }
+   else
+   {
+       while(temp!=NULL)
+       {
+           count++;
+           temp = temp->next;
+       }
+       cout<<" \n Total no of Members : "<< count;
+   }
+}
+void linklist::deletePresident()
+{
+   int no;
+   node*temp;
+   temp = president;
+   president=president->next;
+   delete(temp);
+}
+void linklist::deleteMember()
+{
+   int no;
+   node*temp;
+   node*temp1;
+   int f=0;
+   cout<<"Enter the prn no of student : ";
+   cin>>no;
+   if(president == NULL)
+   {
+       cout <<"List is empty";
+   }
+   else{
+       temp = president;
+       
+       while (temp!=NULL)
+       {
+           if(temp->prn==no)
+           {
+              temp1->next=temp->next;
+               delete(temp);
+               f=1;
+           }
+           temp1 = temp;
+           temp = temp->next;    
+       }
+       if(f==0)
+       {
+           cout<<"Member mot found";
+       }    
+   }  
+}
+void linklist:: display()
+{
+   node * temp;
+   temp= president;
+   if(president == NULL)
+   {
+       cout<<"LIst is empty";
+   }
+   else{
+       while (temp!=NULL)
+       {
+           cout<<" \n PRN : "<<temp->prn;
+           cout<<"\n Name :" <<temp->name;
+           temp = temp->next;    
+       }  
+   }
+}
+void linklist::concatList()
+{
+   int k,j,i;
+   node*president1,*president2,*temp1,*temp2;
+   cout<<"enter no. of members in list1: ";
+   cin>>k;
+   president=NULL;
+   for(i=0;i<k;i++)
+   {
+       addMembers();
+       president1=president;
+   }
+   president=NULL;
+   cout<<"enter no. of members in list2: ";
+   cin>>j;
+   for(i=0;i<j;i++)
+   {
+       addMembers();
+       president2=president;
+   }
+   president=NULL;
+   temp1=president1;
+   while(temp1->next!=NULL)
+   {
+        temp1=temp1->next;
+   }
+   temp1->next=president2;
+ 
+   temp2=president1;
+ 
+   while(temp2!=NULL)
+   {
+       cout<<"\n "<<temp2->prn<<" "<<temp2->name<<"\n";
+       temp2=temp2->next;
+   }
+}
+void linklist::displayReverse()
+{
+   node *curr,*temp ;
+   node*beforeNode =NULL;
+   node*afterNode = NULL;
+   curr = president;
+  while(curr!=NULL)
+   {
+       afterNode = curr->next;
+       curr->next = beforeNode;
+       beforeNode = curr;
+       curr = afterNode;
+   }
+   president = beforeNode;
+   temp = president;
+   while (temp != NULL) {
+           cout << temp->prn << " ";
+           cout<< temp->name << " ";
+           temp = temp->next;
+       }
+}
+int main()
+{
+   linklist a;
+   int i;
+   char ch;
+   do{
+       cout<<"\n 1. To add Members ";
+       cout<<"\n 2. To count member ";
+       cout<<"\n 3. To delete presedent.";
+       cout<<"\n 4. To delete member ";
+       cout<<"\n 5. To display members ";        
+       cout<<"\n 6. To display list in reverse order ";
+       cout<<"\n 7.To concatenate two list ";
+       cout<<"\n Enter the choice: ";
+       cin>>i;
+       switch(i)
+       {
+           case 1: a.addMembers();
+           break;
+           case 2: a.countMember();
+           break;
+           case 3: a.deletePresident();
+           break;
+           case 4: a.deleteMember();
+           break;
+           case 5: a.display();
+           break;
+           case 6: a.displayReverse();
+           break;
+           case 7: a.concatList();
+           break;
+          default: cout<<"\n unknown choice";
+     }
+       cout<<"\n do you want to continue enter y/Y: ";
+       cin>>ch;
+   }while(ch=='y'||ch=='Y');
+   return 0;
+}
+OUTPUT:
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 1
+Enter the PRN of student101
+Enter name of Student:komal'
+ 
+do you want to continue enter y/Y: y 
+ 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 1
+Enter the PRN of student102
+Enter name of Student:tejal
+ 
+do you want to continue enter y/Y: y 
+ 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 1
+Enter the PRN of student103
+Enter name of Student:sanjana
+do you want to continue enter y/Y: y
+ 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 2
+ 
+Total no of Members : 3
+do you want to continue enter y/Y: y 
+ 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 5
+ 
+PRN : 101 
+Name :komal' 
+PRN : 102 
+Name :tejal 
+PRN : 103 
+Name :sanjana 
+do you want to continue enter y/Y: y 
+ 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 6
+103 sanjana 102 tejal 101 komal'
+do you want to continue enter y/Y: y 
+ 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+do you want to continue enter y/Y: y 
+1. To add Members
+2. To count member
+3. To delete presedent.
+4. To delete member
+5. To display members
+6. To display list in reverse order
+7.To concatenate two list 
+Enter the choice: 4
+Enter the prn no of student : 103
+List is empty
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+ Practical No: 8
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: implement of set theory using linked list
+ 
+Code:
+#include<iostream>
+using namespace std;
+struct node
+{
+int rollno;
+node* next;
+};
+class information
+{
+public:
+node
+*head1=NULL,*temp1=NULL,*head2=NULL,*temp2=NULL,*head=NULL,*temp=NULL,*h1=NULL,*head3=NULL,*temp3=NULL,*p=NULL;
+int roll_no,i,f,bs_student,totalstudent,v_student;
+node *create();
+void insert();
+void allstud();
+void vanila();
+void butterscotch();
+void union_vanilla_butterscotch();
+void intersection_vanila_butterscotch();
+void notice();
+void onlyvanila();
+void onlybutterscotch();
+void display();
+};
+node* information::create()
+{
+node* p = new node;
+cout<<"Enter student roll no";
+cin>>roll_no;
+p->rollno=roll_no;
+p->next=NULL;
+return p;
+}
+void information::insert()
+{
+node *p =create();if(head==NULL)
+{
+head = p;
+}
+else
+{
+temp = head;
+while (temp->next!=NULL)
+{
+temp=temp->next;
+}
+temp->next = p;
+}
+}
+void information::display()
+{
+temp = head;
+cout<<"\nRoll no of student is : ";
+while(temp!=NULL)
+{
+cout<<" " <<temp->rollno;
+temp=temp->next;
+}
+}
+void information::allstud()
+{
+cout<<"Enter total no of student in class:";
+cin>>totalstudent;
+for(i=0;i<totalstudent;i++)
+{
+insert();
+h1=head;
+}
+cout<<"\n------------------------------------------------";
+display();
+head=NULL;
+}
+void information::vanila()
+{
+cout<<"\n------------------------------------------------";cout<<"\nEnter total no of student who likes only vanila:";
+cin>>v_student;
+for(i=0;i<v_student;i++)
+{
+insert();
+head1=head;
+}
+cout<<"\n------------------------------------------------";
+display();
+head=NULL;
+}
+void information::butterscotch()
+{
+cout<<"\n------------------------------------------------";
+cout<<"\nEnter total no of student who likes only butterscotch:";
+cin>>bs_student;
+for(i=0;i<bs_student;i++)
+{
+insert();
+head2=head;
+}
+cout<<"\n------------------------------------------------";
+display();
+head=NULL;
+}
+void information::union_vanilla_butterscotch()
+{
+cout<<"\n------------------------------------------------";
+cout<<"\nstudents who like vanila or butterscotch: ";
+temp1=head1;
+while (temp1!=NULL)
+{
+node*p = new node;
+p->rollno = temp1->rollno;
+p->next=NULL;
+if(head3==NULL)
+{
+head3=p;
+}
+else
+{
+temp3=head3;while(temp3->next!=NULL)
+{
+temp3=temp3->next;
+}
+temp3->next=p;
+}
+temp1=temp1->next;
+}
+temp2=head2;
+while (temp2!=NULL)
+{
+f=0;
+temp1=head1;
+while(temp1!=NULL)
+{
+if(temp2->rollno==temp1->rollno)
+{
+f=1;
+break;
+}
+temp1=temp1->next;
+}
+if(f==0)
+{
+node* p=new node;
+p->rollno=temp2->rollno;
+p->next=NULL;
+if(head3==NULL)
+{
+head3=p;
+}
+else
+{
+temp3=head3;
+while (temp3->next!=NULL)
+{
+temp3=temp3->next;
+}
+temp3->next=p;
+}
+}
+temp2=temp2->next;
+}temp3=head3;
+while (temp3!=NULL)
+{
+cout<<" "<<temp3->rollno;
+temp3=temp3->next;
+}
+cout<<"\n------------------------------------------------";
+}
+void information::onlyvanila()
+{
+cout<<"\nRoll no of student who like only vanila:";
+temp1 =head1;
+while (temp1!=NULL)
+{
+temp2=head2;
+f=0;
+while(temp2!=NULL)
+{
+if(temp2->rollno == temp1->rollno)
+{
+f=1;
+break;
+}
+temp2=temp2->next;
+}
+if(f==0)
+{
+cout<<" "<<temp1->rollno;
+}
+temp1=temp1->next;
+}
+cout<<"\n------------------------------------------------";
+}
+void information::onlybutterscotch()
+{
+cout<<"\nRoll no of student who like only butterscotch:";
+temp2 =head2;
+while (temp2!=NULL)
+{temp1=head1;
+f=0;
+while(temp1!=NULL)
+{
+if(temp1->rollno == temp2->rollno)
+{
+f=1;
+}
+temp1=temp1->next;
+}
+if(f==0)
+{
+cout<<" "<<temp2->rollno;
+}
+temp2=temp2->next;
+}
+cout<<"\n------------------------------------------------";
+}
+void information::intersection_vanila_butterscotch()
+{
+cout<<"\nstudents who like both vanila and butterscotch: ";
+temp1=head1;
+while (temp1!=NULL)
+{
+temp2=head2;
+while (temp2!=NULL)
+{
+if (temp1->rollno == temp2->rollno)
+{
+cout<<" "<<temp1->rollno;
+}
+temp2=temp2->next;
+}
+temp1=temp1->next;
+}
+cout<<"\n------------------------------------------------";}
+void information ::notice()
+{
+cout<<"\nstudents who like neither vanila nor butterscotch\n";
+temp=h1;
+while (temp!=NULL)
+{
+temp3 = head3;
+f=0;
+while(temp3!=NULL)
+{
+if(temp3->rollno == temp->rollno)
+{
+f=1;
+}
+temp3=temp3->next;
+}
+if(f==0)
+{
+cout<<" "<<temp->rollno;
+}
+temp=temp->next;
+}
+}
+int main()
+{
+information info;
+info.allstud();
+info.vanila();
+info.butterscotch();
+info.union_vanilla_butterscotch();
+info.onlyvanila();
+info.onlybutterscotch();
+info.intersection_vanila_butterscotch();
+info.notice();
+return 0 ;
+}
+OUTPUT:
+Enter student roll no10
+Enter student roll no6
+ 
+------------------------------------------------
+Roll no of student is :  1 3 10 6
+------------------------------------------------
+Enter total no of student who likes only butterscotch:6
+Enter student roll no6
+Enter student roll no1
+Enter student roll no2
+Enter student roll no4
+Enter student roll no5
+Enter student roll no8
+ 
+------------------------------------------------
+Roll no of student is :  6 1 2 4 5 8
+------------------------------------------------
+students who like vanila or butterscotch:  1 3 10 6 2 4 5 8
+------------------------------------------------
+Roll no of student who like only vanila: 3 10
+------------------------------------------------
+Roll no of student who like only butterscotch: 2 4 5 8
+------------------------------------------------
+students who like both vanila and butterscotch:  1 6
+------------------------------------------------
+students who like neither vanila nor butterscotch
+7 9
+--------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Practical No: 9
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: To check string is palindrome or not using stack manual.
+ 
+Code:
+#include<iostream>
+#include<string.h>
+#define max 50
+using namespace std;
+class STACK
+{
+​private:
+​​char stackstring[max];
+​​int top;
+​public:
+​​STACK()
+​​{
+​​​top=-1;​
+​​}​
+​​void push(char);
+​​void reverse();​
+​​void convert(char[]);
+​​void palindrome();
+};
+void STACK::push(char c)
+{
+​top++;
+​stackstring[top] = c;
+​stackstring[top+1]='\0';
+​
+​cout<<endl<<c<<" is pushed on stack ...";
+}
+void STACK::reverse()
+{
+​cout<<"\nReverse String is :";
+    for(int i=strlen(stackstring)-1; i>=0; i--)
+       cout<<stackstring[i];
+   cout<<"\n"<<endl;
+}
+void STACK::convert(char str[])
+{
+​int j,k,len = strlen(str);
+ 
+​for(j=0, k=0; j<len; j++)
+​{
+​
+       if(isalpha(str[j]))
+       {
+           str[k]=tolower(str[j]);
+           k++;
+       }
+​}
+​str[k]='\0';
+ 
+​cout<<endl<<"Converted String : "<<str<<"\n";
+}
+ 
+void STACK::palindrome()
+{​
+​char str[max];
+​int i,j;
+​for(i=top,j=0; i>=0; i--,j++)
+​{
+​​str[j]=stackstring[i];
+​}
+​str[j]='\0';
+​if(strcmp(str,stackstring) == 0)
+​​cout<<"\nString is palindrome...";
+​else
+​​cout<<"\nString is not palindrome...";
+}
+int main()
+{
+​STACK stack;
+           char str[max];
+​int i=0;
+​cout<<"\nEnter string to be reversed and check is it palindrome or not : \n\n";
+​cin.getline(str , 50);
+​stack.convert(str);
+​while(str[i] != '\0')
+​{
+​​stack.push(str[i]);
+​​i++;
+​}
+ 
+​stack.reverse();
+​stack.palindrome();​
+}
+ 
+OUTPUT:
+Enter string to be reversed and check is it palindrome or not :
+ 
+madam
+ 
+Converted String : madam
+ 
+ 
+ 
+m is pushed on stack ...
+a is pushed on stack ...
+d is pushed on stack ...
+a is pushed on stack ...
+m is pushed on stack ...
+Reverse String is :madam
+ 
+ 
+String is palindrome...
+--------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Practical No: 10
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Check whether given expression is well parenthesized or not manual.
+ 
+Code:
+#include<iostream>
+#include<string.h>
+using namespace std;
+ 
+class paranthesis
+{    
+   char st[20];
+   int top;
+   public:
+    void push(char a);
+    void pop();
+    void input();
+ 
+};
+void paranthesis::push(char a)
+{      
+   top++;  
+   st[top]=a;              
+}
+void paranthesis::pop()
+{      
+   top--;                      
+   
+}
+void paranthesis::input()
+{   char ch[20];
+   int i=0;
+   top=-1;
+   cout<<"\nenter the expression";
+   cin>>ch;
+   while(i<strlen(ch))
+   {  
+   
+       if((ch[i]=='{')||(ch[i]=='[')||(ch[i]=='('))
+       {
+           push(ch[i]);
+ 
+       }
+       
+           
+       if(ch[i]=='}')
+       {  
+           if(st[top]=='{')
+               pop();
+           else
+           {  
+               cout<<"\n matching opening brace '{' is not found";  
+                                     
+           }
+               
+       }
+       if(ch[i]==']')
+       {    
+           if(st[top]=='[')
+               pop();
+           else
+           {    
+               cout<<"\n matching  brace '[' is not found";
+           }
+       }
+       if(ch[i]==')')
+       {    
+           if(st[top]=='(')
+               pop();
+           else
+           {
+               cout<<"\n matching opening brace '(' is not found";
+               
+           }
+       }
+           i++;
+   }
+   if(top==-1)
+   {  
+          cout<<"\nstack is empty";
+          cout<<"\n EXPRESSION IS WELL PARENTHESIZED";
+       
+   }
+   else
+   {  while(top!=-1)
+       {
+           if(st[top]=='[')
+           {
+               pop();  
+               cout<<"\n matching closing brace ']' is not found";  
+           }
+           if(st[top]=='{')
+           {
+               pop();  
+               cout<<"\n matching closing brace '}' is not found";  
+           }
+           if(st[top]=='(')
+           {
+               pop();  
+               cout<<"\n matching closing brace ')' is not found";  
+           }
+       }
+         
+            cout<<"\n EXPRESSION IS NOT WELL PARENTHESIZED";
+   }
+ 
+         
+   
+}
+ 
+int main()
+{  
+   paranthesis  p;
+   p.input();
+   return 0 ;
+   
+}  
+ OUTPUT:
+enter the expression{[()]}
+stack is empty
+EXPRESSION IS WELL PARENTHESIZED
+ 
+enter the expression{[()}
+ 
+matching opening brace '{' is not found 
+matching closing brace ']' is not found 
+matching closing brace '}' is not found 
+EXPRESSION IS NOT WELL PARENTHESIZED
+
+
+ 
+
+
+
+
+
+
+
+Practical No: 11
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Implementation of queue for processing job in operating sysytem.
+ 
+Code:
+#include<iostream>
+using namespace std;
+#define max 5
+class queue
+{
+   private:
+       int front,rear;
+       int data[max];
+   public:
+    queue()
+    {
+       front=-1;
+       rear=-1;
+    }
+    void enqueue(int x);
+    void dequeue();
+    void display();
+};
+void queue::enqueue(int x)
+{
+   if(rear == max-1)
+   {
+       cout<<"Queue is overflow";
+   }
+   else if(front== -1 && rear==-1)
+   {
+       front=0;
+       rear =0;
+       data[rear]=x;
+   }
+   else
+   {
+       rear++;
+       data[rear]=x;
+   }
+}
+ 
+void queue::dequeue()
+{
+   if(front==-1 && rear==-1)
+   {
+       cout<<"Queue is empty";
+   }
+   else if (front==rear)
+   {
+       front=rear = -1;
+   }
+   else
+   {
+       cout<<"Deleted elemnt is :"<<data[front];
+       front++;
+ 
+   }
+}
+void queue::display()
+{
+   int i;
+   if(front== -1 && rear==-1)
+   {
+       cout<<"Queue is empty";
+   }
+   else
+   {
+       for(i=front;i<=rear;i++)
+       {
+           cout<<" "<<data[i];
+       }
+ 
+   }
+}
+ 
+int main()
+{
+   queue q;
+   int ch,i,data;
+   do
+   {
+       cout<<"\n1.To insert element in queue.";
+       cout<<"\n2.To delete element from queue.";
+       cout<<"\n3.To display element of queue.";
+       cout<<"\n4.To exit";
+       cout<<"\nEnter your choice";
+       cin>>ch;
+       switch (ch)
+       {
+           case 1: cout<<"Enter the elemtnt";
+                   cin>> data;
+                   q.enqueue(data);
+                   break;
+ 
+           case 2: q.dequeue();
+                   break;
+ 
+           case 3: q.display();
+                   break;
+       
+           default:
+                   cout<<"Invalid Choice";
+                   break;
+       }      
+   } while (i!=4);
+ }
+OUTPUT:
+ 
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice1
+Enter the elemtnt10
+ 
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice1
+Enter the elemtnt20
+ 
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice1
+Enter the elemtnt30
+ 
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice3
+10 20 30
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice2
+Deleted elemnt is :10
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice3
+20 30
+1.To insert element in queue.
+2.To delete element from queue.
+3.To display element of queue.
+4.To exit
+Enter your choice4
+Invalid Choice
+
+
+
+
+
+
+
+
+
+
+Practical No: 12
+Name: Komal Gorakh Godse
+Class: SE (AIDS)
+Roll No: 60
+Title: Implementation of circular queue for pizza parlour.
+ 
+Code:
+#include<iostream>
+using namespace std;
+#define max 5
+class pizza
+{
+   private:
+      int pizzaparlar[max];
+      int front ,rear;
+   public:
+       pizza()
+       {
+           front = rear =-1;
+       }
+       void acceptOrder(int);//enqueue operation
+       void makePayment(int);//dequeue operation
+       void display();
+};
+ 
+void pizza::acceptOrder(int item)
+{
+    if((rear+1)%max == front)
+   {
+       cout<<"Can't take order.Please waite for some time";
+   }
+   else if(front == -1 && rear == -1)
+   {
+       front = rear =0;
+       pizzaparlar[rear] = item;
+   }
+   else
+   {
+       rear = (rear+1)%max;
+       pizzaparlar[rear] = item;
+ 
+   }
+}
+ 
+void pizza::makePayment(int n)
+{
+   if(front == -1 && rear == -1)
+   {
+       cout<<"No Pizza order yet placed";
+   }
+   else if(front == rear)
+   {
+       front =rear =-1;
+   }
+   else
+   {
+       cout<<"Payment received for order no :"<<front;
+       front = (front+1)%max;
+   }
+}
+void pizza::display()
+{
+   int i =front;
+   cout<<"Pizza oreders are :";
+   while (i!=rear)
+   {
+       cout<<pizzaparlar[i];
+       i=(i+1)%max;
+   }
+    cout<<pizzaparlar[i];
+}
+int main()
+{
+   pizza p;
+   int ch,k,n;
+   do
+   {
+       cout<<"\n**********WELCOME TO PIZZA PARLOR************";
+       cout<<"\n 1.Place pizza order";
+       cout<<"\n 2.Make payment";
+       cout<<"\n 3.Pending orders";
+       cout<<"\n 4.To exit";
+       cout<<"\n Enter your choice";
+ 
+       cin>>ch;
+       switch (ch)
+       {
+       case 1: cout<<"\nWhich Pizza do u like most....\n";
+               cout<<"\n1.Veg Soya Pizza\n2.Veg butter Pizza\n3.Egg_Pizza";
+               cout<<"\nPlease enter u r order: ";
+               cin>>k;
+               p.acceptOrder(k);
+               break;
+       case 2:p.makePayment(n);
+               break;
+       case 3: p.display();
+               break;
+       default:
+               cout<<"Invalid choice";
+               break;
+       }
+ 
+   } while (ch!=4);
+   return 0;
+   
+}
+OUTPUT:
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 1
+ 
+Which Pizza do u like most....
+1.Veg Soya Pizza
+2.Veg Butter Pizza
+3.Egg_Pizza
+Please enter u r order: 1
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 1
+ 
+Which Pizza do u like most....
+1.Veg Soya Pizza
+2.Veg Butter Pizza
+3.Egg_Pizza
+Please enter u r order: 2
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 1
+ 
+Which Pizza do u like most....
+1.Veg Soya Pizza
+2.Veg Butter Pizza
+3.Egg_Pizza
+Please enter u r order: 3
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 3
+Pizza orders are : 1 2 3
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 2
+Payment received for order no : 0
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 2
+Payment received for order no : 1
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 2
+Payment received for order no : 2
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 2
+No Pizza order yet placed
+ 
+**********WELCOME TO PIZZA PARLOR************
+1.Place pizza order
+2.Make payment
+3.Pending orders
+4.To exit
+Enter your choice: 4
+
+
+
+
